@@ -172,10 +172,14 @@ aws s3api get-object \
 pytest tests/ -v
 ```
 
-Two test modules run:
+Three test modules run:
 
 - `tests/test_handler.py` covers the `parse_line` function with seven cases
   including quoted fields, whitespace preservation, and empty input.
+- `tests/test_handler_integration.py` mocks the S3 client and feeds
+  synthetic `s3:ObjectCreated` events through `lambda_handler`, verifying
+  CSV parsing, empty file handling, URL-encoded keys, and multi-line
+  input.
 - `tests/test_stack.py` synthesizes the stack and asserts the CloudFormation
   template contains the expected resources, runtime, encryption,
   public-access block, and bucket policy statement.

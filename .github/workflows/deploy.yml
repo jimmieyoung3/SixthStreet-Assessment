@@ -47,9 +47,6 @@ jobs:
           role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: CDK bootstrap
-        run: cdk bootstrap
-
       - name: CDK diff
         run: cdk diff
 
