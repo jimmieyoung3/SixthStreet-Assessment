@@ -99,9 +99,17 @@ class CdkS3LambdaProcessorStack(Stack):
         # ------------------------------------------------------------------
         # Permissions: read-only access to objects in this bucket
         # ------------------------------------------------------------------
-        # `grant_read` adds an IAM policy granting s3:GetObject and
-        # s3:GetObject* on this bucket only. No wildcard resources.
-        bucket.grant_read(processor)
+        # Explicit statement instead of bucket.grant_read() because the L2
+        # grant_read method adds s3:GetObject*, s3:GetBucket*, and s3:List*,
+        # which is broader than the Lambda needs. The handler only calls
+        # s3:GetObject (and s3:GetObjectVersion for versioned buckets).
+        processor.add_to_role_policy(
+            iam.PolicyStatement(
+                effect=iam.Effect.ALLOW,
+                actions=["s3:GetObject", "s3:GetObjectVersion"],
+                resources=[bucket.arn_for_objects("*")],
+            )
+        )
 
         # ------------------------------------------------------------------
         # Event notification: trigger Lambda on object creation
