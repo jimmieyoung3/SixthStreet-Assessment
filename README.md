@@ -109,6 +109,24 @@ cdk deploy
 CDK prints the bucket name, function name, and log group name as stack
 outputs once deployment is complete. Capture them for the next step.
 
+## CI/CD
+
+Two GitHub Actions workflows automate testing and deployment:
+
+- **CI (`.github/workflows/ci.yml`)** runs on every push and pull request
+  to `main`. It installs dependencies, runs `pytest`, and runs `cdk synth`
+  to catch errors before merge.
+- **Deploy (`.github/workflows/deploy.yml`)** runs on every push to `main`
+  and can be triggered manually. It assumes an IAM role in AWS via
+  GitHub OIDC (OpenID Connect), so no long-lived credentials are stored
+  in the repository or in GitHub Secrets.
+
+The OIDC trust policy on the AWS IAM role is scoped to this specific
+repository. Forks, other repos, and pull requests from external
+contributors cannot assume the role. The deploy job also uses a GitHub
+Environment (`production`) which supports manual approval gates before
+deployment proceeds.
+
 ## Test the deployed stack
 
 Create a sample single-line file and upload it to the bucket:
