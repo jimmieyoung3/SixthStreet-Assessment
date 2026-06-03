@@ -89,7 +89,7 @@ You need the following installed locally before deploying:
 Clone the repo and create a virtual environment:
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/cdk-s3-lambda-processor.git
+git clone https://github.com/jimmieyoung3/cdk-s3-lambda-processor.git
 cd cdk-s3-lambda-processor
 
 python3.14 -m venv .venv
