@@ -137,6 +137,6 @@ class CdkS3LambdaProcessorStack(Stack):
         CfnOutput(
             self,
             "LogGroupName",
-            value=f"/aws/lambda/{processor.function_name}",
+            value=processor_log_group.log_group_name,
             description="CloudWatch log group for the Lambda function.",
         )

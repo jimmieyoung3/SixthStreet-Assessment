@@ -55,8 +55,8 @@ cdk-s3-lambda-processor/
 │   └── test_stack.py                   # CDK template assertions
 ├── docs/
 │   ├── README.md                       # Diagram contents and how to produce
-│   ├── architecture.png                # Embedded in this README
-│   └── architecture.excalidraw         # Excalidraw source (optional)
+│   ├── cdk-s3-logs.svg                 # Runtime architecture diagram
+│   └── github.svg                      # CI/CD pipeline diagram
 ├── .github/workflows/ci.yml            # PR + main: pytest + cdk synth
 ├── .github/workflows/deploy.yml        # Push to main: cdk deploy via OIDC
 ├── .gitignore
@@ -284,8 +284,9 @@ and region.
 
 **Lambda invocation fails with `AccessDenied` on `GetObject`.** Confirm
 the Lambda's IAM role was deployed with the latest stack version. The
-`bucket.grant_read(processor)` call attaches the policy; if you renamed
-the bucket logical ID, redeploy.
+explicit `PolicyStatement` in `stack.py` grants `s3:GetObject` and
+`s3:GetObjectVersion` on the bucket; if you renamed the bucket logical
+ID, redeploy.
 
 **Bucket policy blocks an upload.** All requests must be HTTPS. The AWS
 CLI uses HTTPS by default; tools and SDKs that force HTTP will be
