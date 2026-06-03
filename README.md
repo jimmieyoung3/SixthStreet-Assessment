@@ -61,7 +61,6 @@ cdk-s3-lambda-processor/
 ├── .github/workflows/deploy.yml        # Push to main: cdk deploy via OIDC
 ├── .gitignore
 ├── LICENSE
-├── CLAUDE.md                           # Instructions for Claude Code
 └── README.md                           # This file
 ```
 
