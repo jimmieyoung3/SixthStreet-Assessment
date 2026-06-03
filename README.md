@@ -56,7 +56,9 @@ cdk-s3-lambda-processor/
 ├── docs/
 │   ├── README.md                       # Diagram contents and how to produce
 │   ├── cdk-s3-logs.svg                 # Runtime architecture diagram
-│   └── github.svg                      # CI/CD pipeline diagram
+│   ├── cdk-s3-logs.excalidraw          # Excalidraw source for runtime diagram
+│   ├── github.svg                      # CI/CD pipeline diagram
+│   └── githubaction.excalidraw         # Excalidraw source for CI/CD diagram
 ├── .github/workflows/ci.yml            # PR + main: pytest + cdk synth
 ├── .github/workflows/deploy.yml        # Push to main: cdk deploy via OIDC
 ├── .gitignore
