@@ -7,13 +7,13 @@ JSON logs to CloudWatch Logs.
 
 ## Architecture
 
-### CI/CD Pipeline
-
-![CI/CD pipeline](docs/github.svg)
-
 ### Runtime
 
 ![Runtime architecture](docs/cdk-s3-logs.svg)
+
+### CI/CD Pipeline
+
+![CI/CD pipeline](docs/github.svg)
 
 ### Flow
 
